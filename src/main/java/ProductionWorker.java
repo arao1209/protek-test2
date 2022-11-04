@@ -7,6 +7,9 @@ public class ProductionWorker extends Employee {
     private int shift;
     private double payRate;
 
+    public ProductionWorker(){
+
+    }
 
     public ProductionWorker(int shift, double payRate) {
         this.shift = shift;
@@ -17,8 +20,6 @@ public class ProductionWorker extends Employee {
         super(name, number, hireDate);
         this.shift = shift;
         this.payRate = payRate;
-
-
     }
 
     public int getShift() {

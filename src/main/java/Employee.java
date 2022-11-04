@@ -36,37 +36,48 @@ public class Employee {
     private Boolean verifyEmployeeNumber(String number){
 
         Boolean flag = Boolean.FALSE;
+        int occur = 0;
+        for(int i = 0;i<number.length();i++){
+            if(number.charAt(i) == '-'){
+                    occur += 1;
+            }
+        }
 
-        if(number.contains("-")){
+        if(occur == 1){
+            if(number.contains("-")){
 
-            String[] splitNumber = number.split("-");
+                String[] splitNumber = number.split("-");
 
-            System.out.println(Arrays.toString(splitNumber));
+                System.out.println(Arrays.toString(splitNumber));
 
-            if(splitNumber[0].length() == 3 && splitNumber[1].length()==1){
+                if(splitNumber[0].length() == 3 && splitNumber[1].length()==1){
 
-                try {
+                    try {
 
-                    Integer.parseInt(splitNumber[0]);
+                        Integer.parseInt(splitNumber[0]);
 
-                    int lastValue = splitNumber[1].charAt(0);
-                    System.out.println(lastValue);
+                        int lastValue = splitNumber[1].charAt(0);
+                        System.out.println(lastValue);
 
-                    if (lastValue >= ASCII_VALUE_OF_A && lastValue <= ASCII_VALUE_OF_M) {
+                        if (lastValue >= ASCII_VALUE_OF_A && lastValue <= ASCII_VALUE_OF_M) {
 
-                        flag = Boolean.TRUE;
+                            flag = Boolean.TRUE;
 
-                        System.out.println("Valid number format...");
+                            System.out.println("Valid number format...");
 
+                        }
+                    }catch (Exception e){
+                        System.out.println(e.getMessage()+Integer.parseInt(splitNumber[0]));
                     }
-                }catch (Exception e){
-                    System.out.println(e.getMessage()+Integer.parseInt(splitNumber[0]));
-                }
 
+                }
+                else{
+                    System.out.println("Not a valid number format...");
+                }
             }
-            else{
-                System.out.println("Not a valid number format...");
-            }
+        }
+        else{
+            System.out.println("Not a valid number format...String contains '-' "+occur+" times");
         }
 
         return flag;

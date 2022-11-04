@@ -19,12 +19,11 @@ public class EmplyeeTest {
     @Test
     void setNumberFailTest() {
 
-
         Employee employee = new Employee();
+        String verifiedString = "AAC--";
+        UnsupportedNumberFormatException exception = assertThrows(UnsupportedNumberFormatException.class, () -> employee.setNumber(verifiedString));
 
-        UnsupportedNumberFormatException exception = assertThrows(UnsupportedNumberFormatException.class, () -> employee.setNumber("AAC--"));
-
-        String expectedMessage = "Not A Valid Employee Number Format...It should be in 'XXX-L' format, XXX should be in (0-9) and L should be [A-M]: 12";
+        String expectedMessage = "Not A Valid Employee Number Format...It should be in 'XXX-L' format, XXX should be in (0-9) and L should be [A-M]: "+verifiedString;
 
         assertEquals(expectedMessage, exception.getMessage());
     }
